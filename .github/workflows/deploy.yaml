@@ -101,4 +101,4 @@ jobs:
         registry-username: ${{ secrets.REGISTRY_USERNAME }}
         registry-password: ${{ secrets.REGISTRY_PASSWORD }}
         name: lab-crescer-erik-schunemann
-        location: east-us
+        location: 'east us'
