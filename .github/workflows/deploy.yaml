@@ -32,9 +32,9 @@ jobs:
     - name: Git Checkout
       uses: actions/checkout@v3
     - name: Adicionando permissao para mvn 
-      run: chmod +x ~=../../mvwn
+      run: chmod +x mvnw
     - name: SonarCloud
-      run: ./mvwn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=lab-crescer-pipeline
+      run: ./mvnw verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=lab-crescer-pipeline
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
