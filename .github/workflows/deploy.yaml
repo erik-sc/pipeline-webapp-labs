@@ -56,32 +56,32 @@ jobs:
     - name: Testes Unitarios
       run: mvn -B test --file pom.xml
 
-    push-image:
-      name: Enviando Imagem para o Dockerhub
-      needs: tests
-      runs-on: ubuntu-latest
+  push-image:
+    name: Enviando Imagem para o Dockerhub
+    needs: tests
+    runs-on: ubuntu-latest
 
-      steps:
-      - name: Login DockerHub
-        uses: docker/login-action@v2
-        with:
-          username: ${{DOCKERHUB_USERNAME}}
-          password: ${{DOCKERHUB_TOKEN}}
+    steps:
+    - name: Login DockerHub
+      uses: docker/login-action@v2
+      with:
+        username: ${{DOCKERHUB_USERNAME}}
+        password: ${{DOCKERHUB_TOKEN}}
 
-      - name: Criação e envio da imagem!
-        uses: docker/build-push-action@v4
-        with:
-          file: ./Dockerfile
-          push: true
-          run: |
-            export DOCKER_BUILDKIT=0
-            export COMPOSE_DOCKER_CLI_BUILD=0
-          tags:
-            erikschunemann/javacrescer:latest
+    - name: Criação e envio da imagem!
+      uses: docker/build-push-action@v4
+      with:
+        file: ./Dockerfile
+        push: true
+        run: |
+          export DOCKER_BUILDKIT=0
+          export COMPOSE_DOCKER_CLI_BUILD=0
+        tags:
+          erikschunemann/javacrescer:latest
 
   deploy:
     name: Publica APP!
-    needs: push-imagem
+    needs: push-image
     runs-on: ubuntu-lattest
     steps:
     - name: Login Azure
