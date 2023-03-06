@@ -82,7 +82,7 @@ jobs:
   deploy:
     name: Publica APP!
     needs: push-image
-    runs-on: ubuntu-lattest
+    runs-on: ubuntu-latest
     steps:
     - name: Login Azure
       uses: azure/login@v1
